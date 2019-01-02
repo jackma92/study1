@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "conio.h"
 #include "string.h"
-/*----------------------¶¨Òå±äÁ¿½á¹¹Ìå ----------------------*/
+/*----------------------å®šä¹‰å˜é‡ç»“æ„ä½“ ----------------------*/
 int address_number;
 
 typedef struct _information
@@ -22,9 +22,9 @@ typedef struct _address_book
 	struct _address_book *next;
 }address_book;
 
-address_book *first;//=NULL; //Á´±í½ÚµãÍ·ÖÃ¿Õ 
+address_book *first;//=NULL; //é“¾è¡¨èŠ‚ç‚¹å¤´ç½®ç©º 
 
-/*----------------------ÉùÃ÷º¯Êı----------------------*/
+/*----------------------å£°æ˜å‡½æ•°----------------------*/
 void initialize();
 void add_information ();
 void show_information ();
@@ -33,7 +33,7 @@ void delect_information();
 void change_information();
 void save_file();
 
-/*----------------------Ö÷º¯Êı----------------------*/
+/*----------------------ä¸»å‡½æ•°----------------------*/
 int main()
 {
 	int choose;
@@ -42,26 +42,26 @@ int main()
 	 
 		printf("|======================|\n");
 		printf("|                      |\n");
-		printf("|     ÏµÍ³Ö÷¿ØÆ½Ì¨     |\n");
+		printf("|     ç³»ç»Ÿä¸»æ§å¹³å°     |\n");
 		printf("|                      |\n");
 		printf("|======================|\n");
-		printf("|1.ÏµÍ³³õÊ¼»¯          |\n");
+		printf("|1.ç³»ç»Ÿåˆå§‹åŒ–          |\n");
 		printf("|                      |\n");
-		printf("|2.Ìí¼ÓÁªÏµÈËĞÅÏ¢      |\n");
+		printf("|2.æ·»åŠ è”ç³»äººä¿¡æ¯      |\n");
 		printf("|                      |\n");
-		printf("|3.ÏÔÊ¾ÁªÏµÈËĞÅÏ¢      |\n");
+		printf("|3.æ˜¾ç¤ºè”ç³»äººä¿¡æ¯      |\n");
 		printf("|                      |\n");
-		printf("|4.²éÕÒÁªÏµÈËĞÅÏ¢      |\n");
+		printf("|4.æŸ¥æ‰¾è”ç³»äººä¿¡æ¯      |\n");
 		printf("|                      |\n");
-		printf("|5.É¾³ıÁªÏµÈËĞÅÏ¢      |\n");
+		printf("|5.åˆ é™¤è”ç³»äººä¿¡æ¯      |\n");
 		printf("|                      |\n");
-		printf("|6.ĞŞ¸ÄÁªÏµÈËĞÅÏ¢      |\n");
+		printf("|6.ä¿®æ”¹è”ç³»äººä¿¡æ¯      |\n");
 		printf("|                      |\n");
-		printf("|7.ÎÄ¼ş±£´æ            |\n");
+		printf("|7.æ–‡ä»¶ä¿å­˜            |\n");
 		printf("|                      |\n");
-		printf("|8.ÍË³ö                |\n");
+		printf("|8.é€€å‡º                |\n");
 		printf("|===================== |\n");
-		printf(">>>>ÇëÊäÈëĞèÒª½øĞĞµÄ²Ù×÷:");
+		printf(">>>>è¯·è¾“å…¥éœ€è¦è¿›è¡Œçš„æ“ä½œ:");
 		scanf("%d",&choose);
 			switch(choose)
 			{
@@ -77,9 +77,9 @@ int main()
 	}
 	return 0;
 }
-/*----------------------Ö÷º¯Êı----------------------*/
+/*----------------------ä¸»å‡½æ•°----------------------*/
 
-/*----------------------³õÊ¼»¯º¯Êı----------------------*/
+/*----------------------åˆå§‹åŒ–å‡½æ•°----------------------*/
 void initialize()
 {
 	FILE *fp=NULL;
@@ -92,7 +92,7 @@ void initialize()
 			address_number++;
 		}
 	}
-	printf("¶ÁĞĞÊı³É¹¦,¹²%dĞĞ\n",address_number);
+	printf("è¯»è¡Œæ•°æˆåŠŸ,å…±%dè¡Œ\n",address_number);
 	fp=fopen("data.txt","a+");
 	struct _address_book *next_address,*new_address;
 	first=next_address=new_address=(address_book*)malloc(sizeof(address_book));
@@ -104,12 +104,12 @@ void initialize()
 		new_address=next_address;
 	}
 	next_address->next=NULL;
-	printf("³õÊ¼»¯³É¹¦\n\n");
+	printf("åˆå§‹åŒ–æˆåŠŸ\n\n");
 }
-/*----------------------³õÊ¼»¯º¯Êı----------------------*/
+/*----------------------åˆå§‹åŒ–å‡½æ•°----------------------*/
 
 
-/*----------------------Ìí¼ÓĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ·»åŠ ä¿¡æ¯å‡½æ•°----------------------*/
 void add_information()
 {
 	address_book *last =NULL;
@@ -127,30 +127,30 @@ void add_information()
 		}
 		first->next=new_address;
 	}
-	printf(">>>>ÇëÊäÈëĞÕÃû:");
+	printf(">>>>è¯·è¾“å…¥å§“å:");
 	scanf("%s",new_address->person.name);
-	printf(">>>>ÇëÊäÈëĞÔ±ğ:");
+	printf(">>>>è¯·è¾“å…¥æ€§åˆ«:");
 	scanf("%s",new_address->person.sex);
-	printf(">>>>ÇëÊäÈë³öÉúÈÕÆÚ:");
+	printf(">>>>è¯·è¾“å…¥å‡ºç”Ÿæ—¥æœŸ:");
 	scanf("%s",new_address->person.birthday);
-	printf(">>>>ÇëÊäÈëÊÖ»ú:");
+	printf(">>>>è¯·è¾“å…¥æ‰‹æœº:");
 	scanf("%s",new_address->person.phone);
-	printf(">>>>ÇëÊäÈë´«Õæ:");
+	printf(">>>>è¯·è¾“å…¥ä¼ çœŸ:");
 	scanf("%s",new_address->person.fax);
-	printf(">>>>ÇëÊäÈëµØÖ·:");
+	printf(">>>>è¯·è¾“å…¥åœ°å€:");
 	scanf("%s",new_address->person.address);
-	printf(">>>>ÇëÊäÈëÓÊ±à:");
+	printf(">>>>è¯·è¾“å…¥é‚®ç¼–:");
 	scanf("%s",new_address->person.postcode);
-	printf(">>>>ÊÇ·ñ¼ÌĞøÊäÈë?(Y¼ÌĞø£¬ÆäËûÊäÈëÔò·µ»Ø²Ëµ¥"); 
+	printf(">>>>æ˜¯å¦ç»§ç»­è¾“å…¥?(Yç»§ç»­ï¼Œå…¶ä»–è¾“å…¥åˆ™è¿”å›èœå•"); 
 	int input =getchar(); 
 	if(input=='Y'||input =='y')
 	{
 		add_information();
 	}
 }
-/*----------------------Ìí¼ÓĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ·»åŠ ä¿¡æ¯å‡½æ•°----------------------*/
 
-/*----------------------ÏÔÊ¾ĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ˜¾ç¤ºä¿¡æ¯å‡½æ•°----------------------*/
 void show_information()
 {
 	int i=0;
@@ -158,70 +158,70 @@ void show_information()
 	while(p!=NULL)
 	{
 		i++;
-		printf("\n\n*******µÚ%d¸öÁªÏµÈË*******\n",i);
-		printf("ĞÕÃû:%s\tĞÔ±ğ:%s\tÉúÈÕ:%s\tÊÖ»ú%s\t´«Õæ%s\tµØÖ·:%s\tÓÊ±à:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
+		printf("\n\n*******ç¬¬%dä¸ªè”ç³»äºº*******\n",i);
+		printf("å§“å:%s\tæ€§åˆ«:%s\tç”Ÿæ—¥:%s\tæ‰‹æœº%s\tä¼ çœŸ%s\tåœ°å€:%s\té‚®ç¼–:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
 		p=p->next;
 	}
 	if(i==0)
 	{
 		printf("wrong!\t");
 	}
-	printf("°´ÈÎÒâ¼ü·µ»ØÖ÷²Ëµ¥!\n");
+	printf("æŒ‰ä»»æ„é”®è¿”å›ä¸»èœå•!\n");
 	getch();
 }
-/*----------------------ÏÔÊ¾ĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ˜¾ç¤ºä¿¡æ¯å‡½æ•°----------------------*/
 
-/*----------------------²éÑ¯ĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æŸ¥è¯¢ä¿¡æ¯å‡½æ•°----------------------*/
 void serch_information()
 {
 	int count=0;
 	char name[11]={0};
 	address_book *p =first;
-	printf(">>>>ÇëÊäÈëÒª²éÕÒµÄÁªÏµÈËĞÕÃû£¨×î´ó10¸ö×Ö·û£©:");
+	printf(">>>>è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„è”ç³»äººå§“åï¼ˆæœ€å¤§10ä¸ªå­—ç¬¦ï¼‰:");
 	scanf("%S",name);
 	while(p!=NULL)
 	{
 		if(strcmp(p->person.name,name)==0)
 		{
-			printf("ĞÕÃû:%s\tĞÔ±ğ:%s\tÉúÈÕ:%s\tÊÖ»ú%s\t´«Õæ%s\tµØÖ·:%s\tÓÊ±à:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
+			printf("å§“å:%s\tæ€§åˆ«:%s\tç”Ÿæ—¥:%s\tæ‰‹æœº%s\tä¼ çœŸ%s\tåœ°å€:%s\té‚®ç¼–:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
 			count++;
 		}
 		p=p->next;
 	}
 	if(count ==0)
 	{
-		printf("Ã»ÓĞĞÕÃûÎª¸ÃÓÃ»§µÄÈË£¡\n") ;
+		printf("æ²¡æœ‰å§“åä¸ºè¯¥ç”¨æˆ·çš„äººï¼\n") ;
 	}
-	printf("²éÕÒÍê±Ï\n") ;
+	printf("æŸ¥æ‰¾å®Œæ¯•\n") ;
 	getch();
 }
-/*----------------------ÏÔÊ¾ĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ˜¾ç¤ºä¿¡æ¯å‡½æ•°----------------------*/
 
-/*----------------------É¾³ıĞÅÏ¢º¯Êı----------------------*/
+/*----------------------åˆ é™¤ä¿¡æ¯å‡½æ•°----------------------*/
 void delect_information()
 {
 	int count=0;
 	char name[11]={0};
 	address_book *p=first;
 	address_book *p1=NULL;
-	printf(">>>>ÇëÊäÈëÒªÉ¾³ıµÄÁªÏµÈËĞÕÃû£¨×î´ó10¸ö×Ö·û£©:");
+	printf(">>>>è¯·è¾“å…¥è¦åˆ é™¤çš„è”ç³»äººå§“åï¼ˆæœ€å¤§10ä¸ªå­—ç¬¦ï¼‰:");
 	scanf("%S",name);
 		while(p!=NULL)
 	{
 		if(strcmp(p->person.name,name)==0)
 		{
-			printf("ĞÕÃû:%s\tĞÔ±ğ:%s\tÉúÈÕ:%s\tÊÖ»ú%s\t´«Õæ%s\tµØÖ·:%s\tÓÊ±à:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
+			printf("å§“å:%s\tæ€§åˆ«:%s\tç”Ÿæ—¥:%s\tæ‰‹æœº%s\tä¼ çœŸ%s\tåœ°å€:%s\té‚®ç¼–:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
 			count++;
 		}
 		p=p->next;
 	}
 	if(count ==0)
 	{
-		printf("Ã»ÓĞĞÕÃûÎª¸ÃÓÃ»§µÄÈË£¡\n") ;
+		printf("æ²¡æœ‰å§“åä¸ºè¯¥ç”¨æˆ·çš„äººï¼\n") ;
 	}
 	else
 	{
-		printf("È·ÈÏÒªÉ¾³ı¸ÃÁªÏµÈË[%s]Âğ£¿\n",name);
+		printf("ç¡®è®¤è¦åˆ é™¤è¯¥è”ç³»äºº[%s]å—ï¼Ÿ\n",name);
 		getchar(); 
 		int input=getchar();
 		if(input=='Y'||input =='y')
@@ -245,22 +245,22 @@ void delect_information()
 			}
 			
 			free(p);
-			printf("É¾³ıÍê±Ï£¡\n") ;
+			printf("åˆ é™¤å®Œæ¯•ï¼\n") ;
 		}
 	}
 }
-/*----------------------É¾³ıĞÅÏ¢º¯Êı----------------------*/
+/*----------------------åˆ é™¤ä¿¡æ¯å‡½æ•°----------------------*/
 
 
-/*----------------------¸üĞÂĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ›´æ–°ä¿¡æ¯å‡½æ•°----------------------*/
 void change_information()
 {
 	
 }
-/*----------------------¸üĞÂĞÅÏ¢º¯Êı----------------------*/
+/*----------------------æ›´æ–°ä¿¡æ¯å‡½æ•°----------------------*/
 
 
-/*----------------------±£´æĞÅÏ¢º¯Êı----------------------*/
+/*----------------------ä¿å­˜ä¿¡æ¯å‡½æ•°----------------------*/
 void save_file()
 {
 	FILE *fp;
@@ -274,4 +274,4 @@ void save_file()
 	fclose(fp);
 	printf("save success!");
 }
-/*----------------------±£´æĞÅÏ¢º¯Êı----------------------*/
+/*----------------------ä¿å­˜ä¿¡æ¯å‡½æ•°----------------------*/
