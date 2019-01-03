@@ -223,7 +223,7 @@ void delect_information()
 	{
 		printf("确认要删除该联系人[%s]吗？\n",name);
 		getchar(); 
-		 input=getchar();
+		char input=getchar();
 		if(input=='Y'||input =='y')
 		{
 			if(p==first)
