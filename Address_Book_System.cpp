@@ -178,7 +178,7 @@ void serch_information()
 	char name[11]={0};
 	address_book *p =first;
 	printf(">>>>请输入要查找的联系人姓名（最大10个字符）:");
-	scanf("%S",name);
+	scanf("%s",name);
 	while(p!=NULL)
 	{
 		if(strcmp(p->person.name,name)==0)
@@ -205,7 +205,7 @@ void delect_information()
 	address_book *p=first;
 	address_book *p1=NULL;
 	printf(">>>>请输入要删除的联系人姓名（最大10个字符）:");
-	scanf("%S",name);
+	scanf("%s",name);
 		while(p!=NULL)
 	{
 		if(strcmp(p->person.name,name)==0)
@@ -255,10 +255,74 @@ void delect_information()
 /*----------------------更新信息函数----------------------*/
 void change_information()
 {
-	
-}
-/*----------------------更新信息函数----------------------*/
+	int count=0;
+	char name[11]={0};
+	address_book *p =first;
+	printf(">>>>请输入要修改的联系人姓名（最大10个字符）:");
+	scanf("%s",name);
+	while(p!=NULL)
+	{
+		if(strcmp(p->person.name,name)==0)
+		{
+			printf("姓名:%s\t性别:%s\t生日:%s\t手机%s\t传真%s\t地址:%s\t邮编:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
+			printf("是否修改该用户信息:") ;
+			getchar(); 
+			int input =getchar(); 
+			if(input=='Y'||input =='y')
+			{
+				printf("请输入修改的信息:") ;
+				int choose;
+				scanf("%d",&choose);
+				switch(choose)
+				{
+					case 1:{
+					printf(">>>>请输入姓名:");
+					scanf("%s",p->person.name);
+					break;
+				} 
+					case 2:{
+					printf(">>>>请输入性别:");
+					scanf("%s",p->person.sex);
+					break;
+				} 
+					case 3:{
+					printf(">>>>请输入出生日期:");
+					scanf("%s",p->person.birthday);
+					break;
+				} 
+					case 4:{
+					printf(">>>>请输入手机:");
+					scanf("%s",p->person.phone);
+					break;
+				} 
+					case 5:{
+					printf(">>>>请输入传真:");
+					scanf("%s",p->person.fax);
+					break;
+				} 
+		  	  		case 6:{
+			 		printf(">>>>请输入地址:");
+			    	scanf("%s",p->person.address);
+					break;
+				} 
+					case 7:{
+					printf(">>>>请输入邮编:");
+					scanf("%s",p->person.postcode);
+					break;
+					} 
+				}
+			}
+			count++;	
+		}
+		p=p->next;
+	}
+	if(count ==0)
+	{
+		printf("没有姓名为该用户的人！\n") ;
+	}
 
+}	
+/*----------------------更新信息函数----------------------*/
 
 /*----------------------保存信息函数----------------------*/
 void save_file()
