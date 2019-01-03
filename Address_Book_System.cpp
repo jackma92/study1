@@ -36,6 +36,7 @@ void save_file();
 /*----------------------主函数----------------------*/
 int main()
 {
+	system("cls");
 	int choose;
 	for(;;)
 	{
@@ -82,6 +83,7 @@ int main()
 /*----------------------初始化函数----------------------*/
 void initialize()
 {
+	system("cls");
 	FILE *fp=NULL;
 	char ch;
 	fp=fopen("data.txt","r");
@@ -104,7 +106,10 @@ void initialize()
 		new_address=next_address;
 	}
 	next_address->next=NULL;
-	printf("初始化成功\n\n");
+	printf("初始化成功\n");
+	printf("按任意键返回主菜单!\n");
+	getch();
+	system("cls"); 
 }
 /*----------------------初始化函数----------------------*/
 
@@ -112,6 +117,7 @@ void initialize()
 /*----------------------添加信息函数----------------------*/
 void add_information()
 {
+	system("cls");
 	address_book *last =NULL;
 	address_book *new_address = (address_book *)malloc(sizeof(address_book));
 	new_address->next=NULL;
@@ -147,12 +153,16 @@ void add_information()
 	{
 		add_information();
 	}
+	printf("按任意键返回主菜单!\n");
+	getch();
+	system("cls"); 
 }
 /*----------------------添加信息函数----------------------*/
 
 /*----------------------显示信息函数----------------------*/
 void show_information()
 {
+	system("cls");
 	int i=0;
 	address_book *p =first;
 	while(p!=NULL)
@@ -168,12 +178,14 @@ void show_information()
 	}
 	printf("按任意键返回主菜单!\n");
 	getch();
+	system("cls");
 }
 /*----------------------显示信息函数----------------------*/
 
 /*----------------------查询信息函数----------------------*/
 void serch_information()
 {
+	system("cls");
 	int count=0;
 	char name[11]={0};
 	address_book *p =first;
@@ -193,13 +205,16 @@ void serch_information()
 		printf("没有姓名为该用户的人！\n") ;
 	}
 	printf("查找完毕\n") ;
+	printf("按任意键返回主菜单!\n");
 	getch();
+	system("cls");
 }
 /*----------------------显示信息函数----------------------*/
 
 /*----------------------删除信息函数----------------------*/
 void delect_information()
 {
+	system("cls");
 	int count=0;
 	char name[11]={0};
 	address_book *p=first;
@@ -248,6 +263,9 @@ void delect_information()
 			printf("删除完毕！\n") ;
 		}
 	}
+	printf("按任意键返回主菜单!\n");
+	getch();
+	system("cls");
 }
 /*----------------------删除信息函数----------------------*/
 
@@ -255,6 +273,7 @@ void delect_information()
 /*----------------------更新信息函数----------------------*/
 void change_information()
 {
+	system("cls");
 	int count=0;
 	char name[11]={0};
 	address_book *p =first;
@@ -320,13 +339,16 @@ void change_information()
 	{
 		printf("没有姓名为该用户的人！\n") ;
 	}
-
+	printf("按任意键返回主菜单!\n");
+	getch();
+	system("cls");
 }	
 /*----------------------更新信息函数----------------------*/
 
 /*----------------------保存信息函数----------------------*/
 void save_file()
 {
+	system("cls");
 	FILE *fp;
 	address_book *p =first;
 	fp=fopen("data.txt","w+");
@@ -336,6 +358,9 @@ void save_file()
 		p=p->next;
 	}
 	fclose(fp);
-	printf("save success!");
+	printf("保存成功！\n");
+	printf("按任意键返回主菜单!\n");
+	getch();
+	system("cls");
 }
 /*----------------------保存信息函数----------------------*/
