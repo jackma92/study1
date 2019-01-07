@@ -22,7 +22,7 @@ typedef struct _address_book
 	struct _address_book *next;
 }address_book;
 
-address_book *first=NULL; //链表节点头置空 
+address_book *first;//=NULL; //链表节点头置空 
 
 /*----------------------声明函数----------------------*/
 void initialize();
@@ -97,28 +97,16 @@ void initialize()
 	printf("读行数成功,共%d行\n",address_number);
 	fp=fopen("data.txt","a+");
 	struct _address_book *next_address,*new_address;
-	new_address=(address_book*)malloc(sizeof(address_book));
-	first=new_address;
-	for(int i=0;i<address_number&&!feof(fp);i++)
+	first=next_address=new_address=(address_book*)malloc(sizeof(address_book));
+	for(int i=0;i<address_number;i++)
 	{
 		fscanf(fp,"%s\t%s\t%s\t%s\t%s\t%s\t%s\n",new_address->person.name,new_address->person.sex,new_address->person.birthday,new_address->person.phone,new_address->person.fax,new_address->person.address,new_address->person.postcode);
-		//printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",new_address->person.name,new_address->person.sex,new_address->person.birthday,new_address->person.phone,new_address->person.fax,new_address->person.address,new_address->person.postcode);
-		if(i!=address_number-1)
-		{
-			new_address->next=next_address=(address_book*)malloc(sizeof(address_book));
-		}
-		else
-		{
-			new_address->next=next_address;
-		}
-		new_address=new_address->next;
+		//printf("%s\t%s\n",&new_address->person.name,&new_address->person.phone);
+		new_address->next=next_address;
+		new_address=next_address;
 	}
-	new_address->next=NULL;
-	//printf("\n%d\n",new_address->next);
-	printf("初始化成功\n");
-	printf("按任意键返回主菜单!\n");
-	getch();
-	system("cls"); 
+	next_address->next=NULL;
+	printf("初始化成功\n\n");
 }
 /*----------------------初始化函数----------------------*/
 
@@ -130,19 +118,17 @@ void add_information()
 	address_book *last =NULL;
 	address_book *new_address = (address_book *)malloc(sizeof(address_book));
 	new_address->next=NULL;
-	address_book *_first;
-	_first=first;
-	if(_first==NULL)
+	if(first==NULL)
 	{
-		first=new_address;
+		first= new_address;
 	}
 	else
 	{
-		while(_first->next!=NULL)
+		while(first->next!=NULL)
 		{
-			_first=_first->next;
+			first=first->next;
 		}
-		_first->next=new_address;
+		first->next=new_address;
 	}
 	printf(">>>>请输入姓名:");
 	scanf("%s",new_address->person.name);
@@ -159,28 +145,25 @@ void add_information()
 	printf(">>>>请输入邮编:");
 	scanf("%s",new_address->person.postcode);
 	printf(">>>>是否继续输入?(Y继续，其他输入则返回菜单"); 
-	getchar();
-	char input =getchar(); 
+	getchar(); 
+	int input =getchar(); 
 	if(input=='Y'||input =='y')
 	{
 		add_information();
 	}
-	printf("按任意键返回主菜单!\n");
-	getch();
-	system("cls"); 
 }
 /*----------------------添加信息函数----------------------*/
 
 /*----------------------显示信息函数----------------------*/
 void show_information()
 {
-	//system("cls");
+	system("cls");
 	int i=0;
 	address_book *p =first;
 	while(p!=NULL)
 	{
 		i++;
-		printf("*******第%d个联系人*******\n",i);
+		printf("\n\n*******第%d个联系人*******\n",i);
 		printf("姓名:%s\t性别:%s\t生日:%s\t手机%s\t传真%s\t地址:%s\t邮编:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
 		p=p->next;
 	}
@@ -190,7 +173,6 @@ void show_information()
 	}
 	printf("按任意键返回主菜单!\n");
 	getch();
-	system("cls");
 }
 /*----------------------显示信息函数----------------------*/
 
@@ -217,9 +199,7 @@ void serch_information()
 		printf("没有姓名为该用户的人！\n") ;
 	}
 	printf("查找完毕\n") ;
-	printf("按任意键返回主菜单!\n");
 	getch();
-	system("cls");
 }
 /*----------------------显示信息函数----------------------*/
 
@@ -239,45 +219,42 @@ void delect_information()
 		{
 			printf("姓名:%s\t性别:%s\t生日:%s\t手机%s\t传真%s\t地址:%s\t邮编:%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
 			count++;
-			printf("确认要删除该联系人[%s]吗？(输入Y确认)\n",name);
-			getchar(); 
-			char input=getchar();
-			if(input=='Y'||input =='y')
-			{
-				if(p==first)
-				{
-					first=p->next;
-				}
-				else
-				{
-					p1=first;
-					while(p1!=NULL)
-					{
-						if(p1->next==p)
-						{
-							p1->next=p->next;
-							break;
-						}
-						p1 = p1->next;
-					}
-				}		
-				free(p);
-				printf("删除完毕！\n") ;
-			}
-			}
-			p=p->next;
 		}
+		p=p->next;
+	}
 	if(count ==0)
 	{
 		printf("没有姓名为该用户的人！\n") ;
 	}
-	else if(count ==0)
+	else
 	{
-		printf("没有姓名为该用户的人！\n") ;
+		printf("确认要删除该联系人[%s]吗？\n",name);
+		getchar(); 
+		char input=getchar();
+		if(input=='Y'||input =='y')
+		{
+			if(p==first)
+			{
+				first=p->next;
+			}
+			else
+			{
+				p1=first;
+				while(p1!=NULL)
+				{
+					if(p1->next==p)
+					{
+						p1->next=p->next;
+						break;
+					}
+					p1 = p1->next;
+				}
+			}
+			
+			free(p);
+			printf("删除完毕！\n") ;
+		}
 	}
-	printf("按任意键返回主菜单!\n");
-	getch();
-	system("cls");
 }
 /*----------------------删除信息函数----------------------*/
 
@@ -351,9 +328,7 @@ void change_information()
 	{
 		printf("没有姓名为该用户的人！\n") ;
 	}
-	printf("按任意键返回主菜单!\n");
-	getch();
-	system("cls");
+
 }	
 /*----------------------更新信息函数----------------------*/
 
@@ -364,15 +339,13 @@ void save_file()
 	FILE *fp;
 	address_book *p =first;
 	fp=fopen("data.txt","w+");
-	while(p!=NULL)
+		while(p!=NULL)
 	{
 		fprintf(fp,"%s\t%s\t%s\t%s\t%s\t%s\t%s\n",p->person.name,p->person.sex,p->person.birthday,p->person.phone,p->person.fax,p->person.address,p->person.postcode);
 		p=p->next;
 	}
 	fclose(fp);
-	printf("保存成功！\n");
-	printf("按任意键返回主菜单!\n");
-	getch();
-	system("cls");
+	
+	printf("save success!");
 }
 /*----------------------保存信息函数----------------------*/
